@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Admin | Alumni Ainul Hasan</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="config.js"></script>
+  <script defer src="admin.js"></script>
+</head>
+<body class="admin-body">
+  <header class="site-header">
+    <a class="brand-mark brand-link" href="index.html">AH</a>
+    <div><strong>ALUMNI AINUL HASAN</strong><small>Panel pengelolaan data</small></div>
+    <a class="header-link" href="index.html">Lihat Formulir ↗</a>
+  </header>
+  <main class="admin-wrap">
+    <div class="admin-title">
+      <div><span class="eyebrow">PANEL PENGELOLA</span><h1>Dashboard Alumni</h1><p>Kelola dan ekspor data alumni yang masuk.</p></div>
+      <button id="logoutButton" class="button secondary hidden" type="button">Keluar</button>
+    </div>
+    <div id="adminMessage" class="notice hidden" role="status"></div>
+    <section id="loginPanel" class="form-card login-card">
+      <h2>Login Admin</h2>
+      <p class="muted">Gunakan akun yang sudah dibuat melalui Supabase Authentication dan didaftarkan sebagai admin.</p>
+      <form id="loginForm">
+        <div class="field"><label for="email">Email admin</label><input id="email" type="email" required autocomplete="username" placeholder="admin@contoh.com"></div>
+        <div class="field"><label for="password">Kata sandi</label><input id="password" type="password" required autocomplete="current-password" placeholder="Kata sandi"></div>
+        <button class="button primary full" type="submit">Login</button>
+      </form>
+    </section>
+
+    <section id="dashboardPanel" class="hidden">
+      <div class="stats-grid">
+        <article class="stat-card"><span>Total data</span><strong id="totalCount">0</strong><small>Semua pengajuan</small></article>
+        <article class="stat-card"><span>Menunggu verifikasi</span><strong id="pendingCount">0</strong><small>Perlu diperiksa</small></article>
+        <article class="stat-card"><span>Terverifikasi</span><strong id="verifiedCount">0</strong><small>Data valid</small></article>
+      </div>
+      <section class="table-card">
+        <div class="table-heading"><div><h2>Daftar Alumni</h2><p class="muted">Data terbaru dari database utama.</p></div><button id="exportButton" class="button primary" type="button">↓ Ekspor Excel</button></div>
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="Cari nama, WhatsApp, domisili...">
+          <select id="statusFilter"><option value="all">Semua status</option><option value="pending">Menunggu</option><option value="verified">Terverifikasi</option></select>
+          <select id="yearFilter"><option value="all">Semua tahun lulus</option></select>
+          <button id="refreshButton" class="button secondary" type="button">Muat ulang</button>
+        </div>
+        <div class="table-scroll"><table><thead><tr><th>Nama</th><th>Angkatan/lulus</th><th>WhatsApp</th><th>Domisili</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="alumniRows"><tr><td colspan="6">Login untuk melihat data.</td></tr></tbody></table></div>
+        <p class="table-footnote">Data pribadi hanya untuk admin yang berwenang. Jangan membagikan file ekspor secara terbuka.</p>
+      </section>
+    </section>
+  </main>
+  <footer class="site-footer">© <span id="yearNow"></span> Pondok Pesantren Ainul Hasan</footer>
+</body>
+</html>

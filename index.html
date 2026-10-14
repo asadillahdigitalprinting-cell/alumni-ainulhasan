@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Formulir pendataan alumni Pondok Pesantren Ainul Hasan.">
+  <title>Pendataan Alumni | Pondok Pesantren Ainul Hasan</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-mark">AH</div>
+    <div><strong>PONDOK PESANTREN AINUL HASAN</strong><small>Wonorejo · Maron · Probolinggo</small></div>
+    <a class="header-link" href="admin.html">Login Admin</a>
+  </header>
+
+  <main class="hero-wrap">
+    <section class="intro">
+      <span class="eyebrow">SILATURAHMI · PENDATAAN · KEBERSAMAAN</span>
+      <h1>Menyambung silaturahmi,<br><em>menguatkan alumni.</em></h1>
+      <p>Mohon bantuan seluruh alumni untuk memperbarui data. Informasi yang dikirim akan digunakan untuk administrasi dan komunikasi alumni pondok.</p>
+      <div class="trust-note"><span class="dot"></span> Isi formulir resmi alumni · Gratis · Bisa melalui HP</div>
+    </section>
+
+    <section class="form-card">
+      <div class="card-heading">
+        <div><span class="eyebrow">FORMULIR ONLINE</span><h2>Data Alumni</h2></div>
+        <span class="step-pill">01 / DATA DIRI</span>
+      </div>
+      <div id="configWarning" class="notice warning hidden">Website belum dihubungkan ke Supabase. Admin perlu mengisi konfigurasi di file <code>config.js</code>.</div>
+      <div id="formMessage" class="notice hidden" role="status"></div>
+
+      <form id="alumniForm">
+        <div class="field">
+          <label for="full_name">Nama lengkap <b>*</b></label>
+          <input id="full_name" name="full_name" required maxlength="120" autocomplete="name" placeholder="Nama sesuai identitas">
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="gender">Jenis kelamin <b>*</b></label>
+            <select id="gender" name="gender" required>
+              <option value="">Pilih</option><option>Laki-laki</option><option>Perempuan</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="graduation_year">Tahun lulus</label>
+            <input id="graduation_year" name="graduation_year" type="number" min="1950" max="2100" placeholder="Contoh: 2020">
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="entry_year">Tahun masuk</label>
+            <input id="entry_year" name="entry_year" type="number" min="1950" max="2100" placeholder="Contoh: 2015">
+          </div>
+          <div class="field">
+            <label for="whatsapp">Nomor WhatsApp <b>*</b></label>
+            <input id="whatsapp" name="whatsapp" required maxlength="25" autocomplete="tel" placeholder="Contoh: 08xxxxxxxxxx">
+          </div>
+        </div>
+        <div class="field">
+          <label for="city">Domisili sekarang</label>
+          <input id="city" name="city" maxlength="120" placeholder="Desa/kecamatan/kabupaten">
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="education">Pendidikan terakhir</label>
+            <select id="education" name="education">
+              <option value="">Pilih</option><option>SD/MI</option><option>SMP/MTs</option><option>SMA/MA/SMK</option><option>Diploma</option><option>S1</option><option>S2</option><option>S3</option><option>Lainnya</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="occupation">Pekerjaan</label>
+            <input id="occupation" name="occupation" maxlength="120" placeholder="Contoh: wiraswasta">
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Pesan untuk pondok (opsional)</label>
+          <textarea id="message" name="message" rows="3" maxlength="1000" placeholder="Informasi tambahan bila diperlukan"></textarea>
+        </div>
+        <label class="consent"><input id="consent" type="checkbox" required> <span>Saya menyatakan data yang diisi benar dan menyetujui penggunaannya untuk pendataan serta komunikasi alumni Pondok Pesantren Ainul Hasan.</span></label>
+        <button class="button primary full" id="submitButton" type="submit">Kirim Data Alumni <span>→</span></button>
+        <p class="form-footnote">Data tidak ditampilkan di halaman publik. Jika ada kesalahan, hubungi pengelola alumni untuk pembaruan.</p>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer">© <span id="yearNow"></span> Pondok Pesantren Ainul Hasan · Pendataan Alumni</footer>
+</body>
+</html>
